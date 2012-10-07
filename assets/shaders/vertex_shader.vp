@@ -1,0 +1,6 @@
+uniform mat4 locMVP;
+void main(void)
+{
+	gl_Position = locMVP * gl_Vertex;
+}
+

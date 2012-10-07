@@ -1,0 +1,15 @@
+//original
+// smooth in vec3 color;
+// out vec4 fragColor;
+// void main()
+// {
+// 	fragColor  = vec4(color,1.0);
+// }
+
+
+smooth in vec3 color;
+out vec4 fragColor;
+void main()
+{
+	fragColor  = vec4(color,1.0);
+}

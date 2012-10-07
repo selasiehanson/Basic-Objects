@@ -1,0 +1,23 @@
+//original
+//in vec3 vVertex;
+//in vec3 vColor;
+
+//smooth out vec3 color;
+
+//void main()
+//{
+// 		color = vColor;
+// 		gl_Position = vec4(vVertex,1.0);
+//}
+
+in vec3 vVertex;
+in vec3 vColor;
+
+smooth out vec3 color;
+uniform mat4 rotationMatrix;
+
+void main()
+{
+	color = vColor;
+	gl_Position  =  vec4(vVertex,1.0);
+}

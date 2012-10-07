@@ -1,0 +1,13 @@
+attribute vec4 vVertex;
+
+uniform mat4   locMVP; 
+
+varying vec3 vVaryingTexCoord;
+
+void main(void) 
+{
+	
+	gl_Position = locMVP * vVertex;
+	vVaryingTexCoord = normalize(vVertex.xyz);
+}
+

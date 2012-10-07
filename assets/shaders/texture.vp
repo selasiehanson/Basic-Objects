@@ -1,0 +1,15 @@
+uniform mat4 locMVP;
+
+in vec4 vVertex;
+
+in vec2 vTexCoords;
+
+smooth out vec2  vTex;
+
+void main(void) 
+{ 
+	vTex = vTexCoords;
+	gl_Position = locMVP * vVertex; 
+} 
+
+

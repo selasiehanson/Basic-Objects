@@ -1,0 +1,28 @@
+--Import   and Integrate Camera class(D)
+--load Obj models (D)
+--Texture Obj models (D)
+--change rendering to use vbo (D)
+
+--Terrain
+--SceneManager / WorldManager (D)
+--scene nodes (D)
+--Model Factory (factory class that can generate all type of models)
+--Skybox (D)
+--grid plane (P)
+--Shaders
+----multiple and no shader(P)
+----pass single texture to shader (D)
+----pass multiple textures to shader (P only for skybox)
+----lighting of models 
+--Particles
+--2d
+---text and basic screen ui
+
+--refactor into objects into
+----base
+	--graphics
+	--maths
+	--sound
+	--ai
+	--io
+	--etc....

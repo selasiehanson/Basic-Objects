@@ -1,0 +1,19 @@
+#ifndef __CATTRIBLOCATIONSTYPES
+#define __CATTRIBLOCATIONSTYPES
+
+namespace base 
+{
+	namespace objects 
+	{
+			enum EATTRIB_LOCATIONS_TYPE
+			{
+				EATTRIB_LOCATIONS_VC = 0,
+				EATTRIB_LOCATIONS_VN,
+				EATTRIB_LOCATIONS_VNC ,
+				EATTRIB_LOCATIONS_VNT,
+				EATTRIB_LOCATIONS_COUNT
+			};
+	}
+}
+
+#endif
