@@ -8,7 +8,7 @@
 #include"CBase.h"
 #include "CSceneNode.h"
 #include "CShader.h"
-#include "CMesh2.h"
+#include "CMesh.h"
 
 namespace base
 {
@@ -17,19 +17,14 @@ namespace base
 		class CTriangleSceneNode : public CSceneNode
 		{
 			public:
-				CTriangleSceneNode(CSceneManager *sceneManager, CMesh2 *mesh);
+				CTriangleSceneNode(CSceneManager *sceneManager, CMesh *mesh,GLenum drawType = NULL);
 				void init();
 				void render();
 				void exit();
 			private :
-				int nVert;
-				int nTextures;
-				GLuint vaoHandle;
-				GLuint buffers[2];
-				//Vertexf *pVertices;
 				float angle;
 				base::objects::Shader *shader ;
-				CMesh2 *mesh;
+				CMesh *mesh;
 		};
 
 		typedef class CTriangleSceneNode TriangleSceneNode;

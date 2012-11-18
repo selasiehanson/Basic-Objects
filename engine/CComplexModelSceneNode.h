@@ -6,7 +6,7 @@
 #define FREEGLUT_STATIC
 #include<GL/glut.h>
 #include "CSceneNode.h"
-#include "CMesh.h"
+#include "CModelMesh.h"
 #include "CShader.h"
 #include "CImage.h"
 #include  <string>
@@ -26,7 +26,7 @@ namespace base
 				void exit();
 			
 			private:
-				CMesh *mesh;
+				CModelMesh *mesh;
 				//GLuint bufferId[2];
 				GLuint vertexId;
 				GLuint texCoordId;

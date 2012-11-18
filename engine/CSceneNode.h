@@ -63,6 +63,7 @@ namespace base
 				}
 				base::objects::CSceneManager *sceneManager;
 		protected:
+			GLenum drawType;
 			base::Vertexf position;
 			base::Vertexf scale;
 			GLint locMVP;

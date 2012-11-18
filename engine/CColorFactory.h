@@ -17,19 +17,19 @@ namespace  base
 					glm::vec4 out;
 					switch (color)
 					{
-						case CCOLORS::COLOR_BLACK:
+						case CCOLORS::BLACK:
 							out = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 							break;
-						case CCOLORS::COLOR_BLUE:
+						case CCOLORS::BLUE:
 							out = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 							break;
-						case CCOLORS::COLOR_RED:
+						case CCOLORS::RED:
 							out = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 							break;
-						case CCOLORS::COLOR_YELLOW:
+						case CCOLORS::YELLOW:
 							out = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
 							break;
-						case CCOLORS::COLOR_GREEN:
+						case CCOLORS::GREEN:
 							out = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 							break;
 						default :

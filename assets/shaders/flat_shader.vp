@@ -3,6 +3,5 @@ in vec3 vVertex;
 uniform mat4 locMVP;
 void main()
 {
-	gl_Position  =  locMVP * vec4(vVertex,1.0);
-
+	gl_Position  = locMVP * vec4(vVertex,1.0);
 }

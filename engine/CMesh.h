@@ -1,46 +1,49 @@
-#ifndef __CMESH
-#define __CMESH
+#ifndef __CMesh
+#define __CMesh
 
-//#define GLEW_STATIC
 #include <vector>
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <Gl/glew.h>
+#include <GL/glew.h>
 #include "../glm/glm.hpp"
 
 #include "../glm/gtc/matrix_transform.hpp"
 #include "../glm/gtc/type_ptr.hpp"
+#include "EMeshBuffer.h"
+#include "EMeshType.h"
+#include "CShader.h"
 namespace base
 {
 	namespace objects
 	{
 		class CMesh
 		{
-		private:
-			
-			//int nVertices;
-			//int nNormals;
-			//int nTexCoords;
-		public:
-			CMesh ();
-			~CMesh();
-			CMesh(std::string filename);
-			
-			std::vector<glm::vec3> vertices;
-			std::vector<glm::vec2> textureCoordinates;
-			std::vector<glm::vec3>normals;
+			public:
+				CMesh(EMESH_TYPE type);
+				std::vector<glm::vec3> vertices;
+				std::vector<glm::vec2> textureCoordinates;
+				std::vector<glm::vec3>normals;
+				std::vector<glm::vec3>colors;
+				
+				std::vector<GLushort>indices;
 
-			std::vector<GLushort>indices;
+				//not really necessarry
+				int getVertexCount();
+				int getNormalCount();
+				int getTexCoordCount();
+				int getColorCount();
 
-			int getVertexCount();
-			int getNormalCount();
-			int getTexCoordCount();
+				void bufferData();
+				void draw(GLenum type = NULL);
+			private:
+				GLuint vao;
+				GLuint buffers[EMESH_BUFFER::EMESH_BUFFER_COUNT];
+				base::objects::Shader *shader ;
+				GLuint texture;
+
 		};
-
-		typedef class CMesh Mesh;
 	}
 }
-
 
 #endif

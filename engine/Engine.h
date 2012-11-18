@@ -7,7 +7,7 @@
 #include <sstream>
 #include "../glm/gtc/matrix_transform.hpp"
 
-#include "Cube.h"
+#include "CCube.h"
 #include "CImage.h"
 #include "CShader.h"
 #include "Globals.h"
@@ -22,8 +22,9 @@
 #include "CLightSceneNode.h"
 #include "CTriangleSceneNode.h"
 #include "CText.h"
-#include "CMesh2.h"
+#include "CMesh.h"
 #include "EMeshBuffer.h"
 #include "EMeshType.h"
 #include "EModelType.h"
+
 

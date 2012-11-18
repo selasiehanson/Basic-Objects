@@ -8,6 +8,7 @@
 #include"CBase.h"
 #include "CSceneNode.h"
 #include "CShader.h"
+#include "CMesh.h"
 namespace base
 {
 	namespace objects
@@ -15,21 +16,15 @@ namespace base
 		class CPlane : public CSceneNode
 		{
 			public:
-				CPlane(CSceneManager *sceneManager);
-				CPlane(CSceneManager *sceneManager,int nVert);
+				CPlane(CSceneManager *sceneManager,CMesh *mesh, GLenum drawType = NULL);
 				~CPlane();
 				void init();
 				void render();
 				void exit();
 
 			 private :
-				int nVert;
-				int nTextures;
-				GLuint bufferId;
-				GLuint buffers[2];
-				GLuint vaoHandle;
-				Vertexf *pVertices;
 				base::objects::Shader *shader ;
+				CMesh *mesh;
 		};
 
 		typedef class CPlane Plane;

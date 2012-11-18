@@ -7,13 +7,13 @@ namespace base
 	{
 			enum CCOLORS
 			{
-				COLOR_BLACK = 0,
-				COLOR_BLUE,
-				COLOR_RED ,
-				COLOR_YELLOW,
-				COLOR_GREEN,
-				COLOR_WHITE,
-				COLOR__COUNT
+				BLACK = 0,
+				BLUE,
+				RED ,
+				YELLOW,
+				GREEN,
+				WHITE,
+				COLOR_COUNT
 			};
 	}
 }

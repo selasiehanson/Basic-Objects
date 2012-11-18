@@ -1,13 +1,10 @@
-//#include "Engine.h"
-//#define GLEW_STATIC
 #include  "engine/Engine.h"
 #include  <ft2build.h>
-//#include  <freetype2>
-#include FT_FREETYPE_H
 
 
+//libraries to be loaded
 #pragma comment(lib,"glew32d.lib")
-#pragma comment(lib,"freetype.lib")
+#pragma comment(lib,"freetype249_D.lib")
 
 using namespace base;
 using namespace base::io;
@@ -49,7 +46,7 @@ float angle = 0.0f;
 float moveAmount = 0.5f;
 
 
-base::objects::CMesh2 *mesh;
+base::objects::CMesh *mesh;
 ///font stuff
 
 GLuint program;
@@ -65,11 +62,6 @@ struct point {
 };
 
 GLuint vbo;
-
-FT_Library ft;
-FT_Face face;
-
-const char *fontfilename;
 
 base::objects2D::CText text;
 
@@ -162,119 +154,9 @@ void initOGL()
 	
 }
 
-void load2dRect(Image *image, GLenum minFilter = GL_NEAREST, GLenum magFilter = GL_NEAREST,GLenum wrapMode = GL_CLAMP_TO_EDGE)
-{
-	if(image && image->data)
-	{
-		glTexParameteri(GL_TEXTURE_RECTANGLE,GL_TEXTURE_WRAP_S, wrapMode);
-		glTexParameteri(GL_TEXTURE_RECTANGLE,GL_TEXTURE_WRAP_T,wrapMode);
-		glTexParameteri(GL_TEXTURE_RECTANGLE,GL_TEXTURE_MIN_FILTER,minFilter);
-		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, magFilter);
-		glPixelStorei(GL_UNPACK_ALIGNMENT,1);
-		glTexImage2D(GL_TEXTURE_RECTANGLE,0,image->component,image->width,
-			image->height,0,image->format,GL_UNSIGNED_BYTE,image->data);
-		delete image->data;
-		//delete image;
-	}
-	else
-	{
-		cout<<"image has no data"<<endl;
-	}
-}
-
-void initRect2d(int x,int y,int width,int height)
-{
-	/*vec3 rectVertices [] = {
-					vec3(x,y,0.0f),
-					vec3(x, y - height,0.0f),
-					vec3(x + width, y - height , 0.0f),
-					vec3(x + width, y , 0.0f)
-	};*/
-									
-	rectVertices.push_back(vec3(x,y,0.0f));
-	rectVertices.push_back(vec3(x,y- height,0.0f));
-	rectVertices.push_back(vec3(x + width, y - height , 0.0f));
-	rectVertices.push_back(vec3(x + width, y , 0.0f));
-
-	rectUVs.push_back(vec2(0.0f,height));
-	rectUVs.push_back(vec2(0.0f,0.0f));
-	rectUVs.push_back(vec2(width,0.0f));
-	rectUVs.push_back(vec2(width,height));
-	
-	/*vec2 rectUVs[] = {
-		vec2(0.0f,height),
-		vec2(0.0f,0.0f),
-		vec2(width,0.0f),
-		vec2(width,height)
-	};*/
-
-	
-	//do shader stuff here
-	auto vsh = "assets/shaders/rect.vp";
-	auto fsh = "assets/shaders/rect.fp";
-	rectShader =  new Shader(vsh,fsh);
-	//rectShader->bindLocations();
-	rectShader->link();
-	//vVertex = glGetAttribLocation(rectShader->getProgram(),"vVertex");
-	//vTexCoords = glGetAttribLocation(rectShader->getProgram(),"vTexCoord");
-	
-	
-	
-	glGenBuffers(1,&rectVertId);
-	glBindBuffer(GL_ARRAY_BUFFER,rectVertId);
-	glBufferData(GL_ARRAY_BUFFER,sizeof(rectVertices),&rectVertices[0],GL_STATIC_DRAW);
-
-	glGenBuffers(1,&rectUvId);
-	glBindBuffer(GL_ARRAY_BUFFER,rectUvId);
-	glBufferData(GL_ARRAY_BUFFER,sizeof(rectUVs),&rectUVs[0],GL_STATIC_DRAW);
-
-	
-	//bind the texture
-	glGenTextures(1,&rectTextureId);
-	glBindTexture(GL_TEXTURE_RECTANGLE,rectTextureId);
-	unsigned int rectId;
-	TGAHandler  * tgaHandler=  new TGAHandler();
-	auto image = tgaHandler->readFile (logo,&rectId);
-	load2dRect(image);
-
-
-	
-}
-
-
-void renderRect()
-{
-	auto projection = glm::ortho(0.0f, (float)windowWidth,0.0f,(float)windowHeight,-1.0f,1.0f);
-	glEnable(GL_BLEND);
-	glDisable(GL_DEPTH_TEST);
-	glUseProgram(rectShader->getProgram());
-		
-	
-	glBindTexture(GL_TEXTURE_RECTANGLE,rectTextureId);
-
-	//rectShader->enableLocations();
-	//glEnableVertexAttribArray(vVertex);
-	glBindBuffer(GL_ARRAY_BUFFER,rectVertId);
-	glVertexAttribPointer(vVertex, 3, GL_FLOAT,GL_FALSE,0,0);
-
-	//glEnableVertexAttribArray(vTexCoords);
-	glBindBuffer(GL_ARRAY_BUFFER,rectUvId);
-	glVertexAttribPointer(vTexCoords, 2, GL_FLOAT,GL_FALSE,0,0);
-	
-	rectMVP = glGetUniformLocation(rectShader->getProgram(), "mvpMatrix");
-	rectTexture = glGetUniformLocation(rectShader->getProgram(), "rectangleImage");
-	
-	glUniform1i(rectTexture,0);
-	//auto value = glm::value_ptr( projection);
-	glUniformMatrix4fv(rectMVP,1,GL_FALSE,glm::value_ptr(projection));
 
 
 
-	//do the drawing here
-	glDrawArrays(GL_TRIANGLE_STRIP,0,4);
-	glDisable(GL_BLEND);
-	glEnable(GL_DEPTH_TEST);
-}
 
 
 void renderScene()
@@ -308,11 +190,6 @@ void renderScene()
 
 void beforeInit(){
 	
-	std::cout<<ASSETS::ROOT <<std::endl;
-	std::cout<<ASSETS::IMAGES<<std::endl;
-	
-	fontfilename = "FreeSans.ttf";
-
 	glm::mat4 src(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
 	
 	auto srcValue = glm::value_ptr(src);
@@ -324,46 +201,44 @@ void beforeInit(){
 	 
 	sceneManager = new SceneManager;
 	skybox =  new SkyBox(skyImages,sceneManager,1000.0f);
-	//auto s = reinterpret_cast<CSkyBox * >(skybox);
+	auto s = reinterpret_cast<CSkyBox * >(skybox);
 	//sceneManager->setSkyBox(skybox);
 
 	//create a single triangle
-	mesh = new base::objects::CMesh2(EMESH_TYPE::TRIANGLE);
-	triangle = new TriangleSceneNode(sceneManager,mesh);
+	//mesh = new base::objects::CMesh(EMESH_TYPE::TRIANGLE);
+	//triangle = new TriangleSceneNode(sceneManager,mesh);
 	//sceneManager->addNode(triangle);
 
+	auto planeMesh = new base::objects::CMesh(EMESH_TYPE::PLANE);
+	ground = new Plane(sceneManager,planeMesh, GL_LINES);
+	if(ground){
+		ground->setPosition(20.0f, -0.1f, 10.0f);
+		sceneManager->addNode(ground);
+	}
+
 	//creating lights
-	light =  new Light(vec3(-100.0f, 100.0f, 100.0f),vec4(0.0f, 0.0f, 1.0f, 1.0f));
+	//light =  new Light(vec3(-100.0f, 100.0f, 100.0f),vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
 	//sceneManager->addNode(light);
 
-	//creating cubes
-	const char * texture  = "3_store.jpg";
-	cube  = new Cube(sceneManager,0.6f,texture);
-	cube->setPosition(Vertexf(-2,0,2));
-	
-	//the ground plane
-	ground  = new Plane(sceneManager);
-	ground->setPosition(0.0f,-1.0f,-15.0f);
-	
-	sceneManager->addNode(ground);
-
 	//draw a colletion of cubes
-	const auto size = 2;
+	const auto size = 10;
 	Cube *cubes[size];
+	const char * texture  = "3_store.jpg";
+
 	
+
 	for(int i=0; i < size; i++)
 	{
-		std::cout<<"adding cube " << i +1<<endl;
+		auto z = rand() % 40;
+		auto x = rand() % 40;
+		//std::cout<<"adding cube " << i +1<<endl;
 		cubes[i] = new Cube(sceneManager,0.7f,texture);
-		if(i % 2 == 0)
-			cubes[i]->setPosition((i * -2) , 0, 3 * i);
-		else 
-			cubes[i]->setPosition((i * 2) , 0, -3 * i);
+		cubes[i]->setPosition(x , 0, z);
 		sceneManager->addNode(cubes[i]);
 	}
 
-	fighter1 = new ModelSceneNode(sceneManager,"Hover01_Body.obj","FB_hover01_uv01.jpg");
+	//fighter1 = new ModelSceneNode(sceneManager,"Hover01_Body.obj","FB_hover01_uv01.jpg");
 	if(fighter1)
 	{
 		fighter1->setPosition(0,1.5f,0);
@@ -387,8 +262,8 @@ void beforeInit(){
 		sceneManager->addNode(fighter3);
 	}
 
-	Vertexf position(0.0f, 2.0f, 10.0f);
-	Vertexf target( 0.0f, 0.0f,-5.0f);
+	Vertexf position(20.0f, 1.0f, 60.0f);
+	Vertexf target( 0.0f, 0.0f,-200.0f);
 	//Vertexf position(75,75,75);
 	//Vertexf target( 0,1.5f,0);
 	camera = new Camera(position , target);
@@ -412,10 +287,10 @@ void init()
 
 	text.registerFont("FreeSans","FreeSans.ttf"); 
 	text.setActiveFont("FreeSans");
-	text.setCurrentColor(CCOLORS::COLOR_YELLOW);
+	text.setCurrentColor(CCOLORS::YELLOW);
 	//initFont();
 	//rect init
-	initRect2d(500,155,300,155);
+	//initRect2d(500,155,300,155);
 }
 
 void main(int argc, char **argv)
@@ -441,6 +316,6 @@ void main(int argc, char **argv)
 	}
 	std::cout<<glewGetString(GLEW_VERSION)<<std::endl;
 
-	init(); ///a lot of thing should move to this function
+	init(); ///a lot of things should move to this function
 	glutMainLoop();
 }

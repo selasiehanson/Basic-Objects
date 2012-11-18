@@ -1,11 +1,11 @@
-#include "Cube.h"
+#include "CCube.h"
 #include "CSceneManager.h"
 
 #include "CJPEGHandler.h"
 #include "CTGAHandler.h"
 #include "CShader.h"
 #include "iostream"
-
+#include "helpers\Helpers.h"
 
 namespace base
 {
@@ -45,24 +45,6 @@ namespace base
 		{
 			return length;
 		}
-		
-		
-
-		void CCube::setUpTexturing(base::io::CImage* image)
-		{
-			glEnable(GL_TEXTURE_2D);
-			//glActiveTexture(GL_TEXTURE0);
-			glGenTextures(1, &textureId[0]);
-			glBindTexture(GL_TEXTURE_2D, textureId[0]);
-			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-			//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-			//gluBuild2DMipmaps(GL_TEXTURE_2D, 3,image->width, image->height, GL_RGB, GL_UNSIGNED_BYTE, image->data);
-			glTexImage2D(GL_TEXTURE_2D,0,GL_COMPRESSED_RGB,image->width,image->height,0,GL_RGB,GL_UNSIGNED_BYTE,image->data);
-			//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			/*glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);*/
-		}
-
 		
 		void CCube::init()
 		{
@@ -117,7 +99,6 @@ namespace base
 						length,  length, -length,
 						length,  length,  length,
 						length, -length,  length
-						
 			};
 
 			//verts = &v[0];
@@ -125,7 +106,6 @@ namespace base
 			
 			glGenBuffers(1, &vertexId);
 			glBindBuffer(GL_ARRAY_BUFFER,vertexId);
-			std::cout<<"size of vertices is "<< sizeof(v)<< std::endl;
 			glBufferData(GL_ARRAY_BUFFER, sizeof(v),v,GL_STATIC_DRAW);
 			
 			if(this->useTexCoords) {
@@ -134,7 +114,6 @@ namespace base
 						1.0f, 0.0f, 
 						1.0f, 1.0f, 
 						0.0f, 1.0f
-
 				};
 				//texCoords = &t[0];
 			
@@ -150,24 +129,24 @@ namespace base
 			
 			
 			  GLushort indices[] = {
-				// front
-				0,  1,  2,
-				2,  3,  0,
-				// top
-				4,  5,  6,
-				6,  7,  4,
-				// back
-				8,  9, 10,
-				10, 11,  8,
-				// bottom
-				12, 13, 14,
-				14, 15, 12,
-				// left
-				16, 17, 18,
-				18, 19, 16,
-				// right
-				20, 21, 22,
-				22, 23, 20,
+					// front
+					0,  1,  2,
+					2,  3,  0,
+					// top
+					4,  5,  6,
+					6,  7,  4,
+					// back
+					8,  9, 10,
+					10, 11,  8,
+					// bottom
+					12, 13, 14,
+					14, 15, 12,
+					// left
+					16, 17, 18,
+					18, 19, 16,
+					// right
+					20, 21, 22,
+					22, 23, 20
 			  };
 
 			glGenBuffers(1, &indexBufferId);
@@ -185,7 +164,8 @@ namespace base
 			auto path =  ASSETS::IMAGE(this->texture);
 			auto image = jpgHandler->readFile(path.c_str(),textureId);
 
-			setUpTexturing(image);
+			HELPERS::setTexture(image, textureId);
+			
 			delete image->data;
 			vVertex = glGetAttribLocation(shader->getProgram(),"vVertex");
 			vTexCoords = glGetAttribLocation(shader->getProgram(),"vTexCoords");
@@ -226,14 +206,11 @@ namespace base
 			glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER,GL_BUFFER_SIZE, &size);
 			glDrawElements(GL_TRIANGLES,size / sizeof(GLushort), GL_UNSIGNED_SHORT,0);
 
-
 			glDisableVertexAttribArray(vVertex);
 			glDisableVertexAttribArray(vTexCoords);
 
 			glUseProgram(0);
 			glDisable(GL_CULL_FACE);
-
-				
 		}
 
 		void CCube::exit()

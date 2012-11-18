@@ -16,7 +16,7 @@ namespace base
 	{
 		
 
-		CMesh * CMeshLoader::loadMesh(string filename)
+		CModelMesh * CMeshLoader::loadMesh(string filename)
 		{
 
 			EMODEL_TYPE type = getType(filename);

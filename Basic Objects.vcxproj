@@ -20,12 +20,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -39,10 +41,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\ENGINE\game\freetype-2.3.5-1-bin\include\freetype2;E:\ENGINE\game\freetype-2.3.5-1-bin\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\ENGINE\game\liraries\freetye2.4.9\include;$(IncludePath)</IncludePath>
     <ReferencePath>
     </ReferencePath>
-    <LibraryPath>E:\ENGINE\game\freetype-2.3.5-1-bin\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>E:\ENGINE\game\liraries\freetye2.4.9\lib;$(LibraryPath)</LibraryPath>
     <SourcePath />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -88,8 +90,8 @@
     <ClCompile Include="engine\CImage.cpp" />
     <ClCompile Include="engine\CJPEGHandler.cpp" />
     <ClCompile Include="engine\CLightSceneNode.cpp" />
+    <ClCompile Include="engine\CModelMesh.cpp" />
     <ClCompile Include="engine\CMesh.cpp" />
-    <ClCompile Include="engine\CMesh2.cpp" />
     <ClCompile Include="engine\CMeshLoader.cpp" />
     <ClCompile Include="engine\CPlane.cpp" />
     <ClCompile Include="engine\CSceneManager.cpp" />
@@ -98,7 +100,7 @@
     <ClCompile Include="engine\CText.cpp" />
     <ClCompile Include="engine\CTGAHandler.cpp" />
     <ClCompile Include="engine\CTriangleSceneNode.cpp" />
-    <ClCompile Include="engine\Cube.cpp" />
+    <ClCompile Include="engine\CCube.cpp" />
     <ClCompile Include="engine\CVec2.cpp" />
     <ClCompile Include="engine\Globals.cpp" />
     <ClCompile Include="glm\core\dummy.cpp" />
@@ -163,10 +165,11 @@
     <ClInclude Include="engine\CJPEGHandler.h" />
     <ClInclude Include="engine\CLightSceneNode.h" />
     <ClInclude Include="engine\CMatrix4.h" />
+    <ClInclude Include="engine\CModelMesh.h" />
     <ClInclude Include="engine\CMesh.h" />
-    <ClInclude Include="engine\CMesh2.h" />
     <ClInclude Include="engine\CMeshLoader.h" />
     <ClInclude Include="engine\CPlane.h" />
+    <ClInclude Include="engine\CPlaneMesh.h" />
     <ClInclude Include="engine\CSceneManager.h" />
     <ClInclude Include="engine\CSceneNode.h" />
     <ClInclude Include="engine\CShader.h" />
@@ -175,12 +178,13 @@
     <ClInclude Include="engine\CTGAHandler.h" />
     <ClInclude Include="engine\CTriangleMeshData.h" />
     <ClInclude Include="engine\CTriangleSceneNode.h" />
-    <ClInclude Include="engine\Cube.h" />
+    <ClInclude Include="engine\CCube.h" />
     <ClInclude Include="engine\CVec2.h" />
     <ClInclude Include="engine\EMeshBuffer.h" />
     <ClInclude Include="engine\EMeshType.h" />
     <ClInclude Include="engine\EModelType.h" />
     <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\helpers\Helpers.h" />
     <ClInclude Include="engine\Utility.h" />
     <ClInclude Include="ft249\include\freetype\config\ftconfig.h" />
     <ClInclude Include="ft249\include\freetype\config\ftheader.h" />

@@ -1,7 +1,7 @@
 #ifndef __SKYBOX
 #define __SKYBOX
 
-#include "Cube.h"
+#include "CCube.h"
 //#define FREEGLUT_STATIC
 //#include<GL/glut.h>
 

@@ -168,9 +168,6 @@
     <ClCompile Include="engine\CJPEGHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\CMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="engine\CMeshLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -189,9 +186,6 @@
     <ClCompile Include="engine\CTGAHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\Cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="engine\CVec2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -207,13 +201,19 @@
     <ClCompile Include="engine\Globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\CMesh2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glm\core\dummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\CModelMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\CMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\CCube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -608,9 +608,6 @@
     <ClInclude Include="engine\CMatrix4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\CMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="engine\CMeshLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -630,9 +627,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\CTGAHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\CVec2.h">
@@ -929,13 +923,25 @@
     <ClInclude Include="engine\EMeshType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\CMesh2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="engine\CTriangleMeshData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\CCubeMeshData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\CModelMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\CMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\CPlaneMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\helpers\Helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\CCube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

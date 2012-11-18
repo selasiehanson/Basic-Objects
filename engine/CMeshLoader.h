@@ -1,7 +1,7 @@
 #ifndef __CMESH_LOADER
 #define __CMESH_LOADER
 
-#include "CMesh.h"
+#include "CModelMesh.h"
 #include "EModelType.h"
 #include <vector>
 #include <fstream>
@@ -31,7 +31,7 @@ namespace base
 			public:
 				CMeshLoader(){};
 				~CMeshLoader(){};
-				CMesh * loadMesh(string filename);
+				CModelMesh * loadMesh(string filename);
 			private:
 				void loadAsOBJ(string filename,Mesh *mesh);
 				bool  getSimilarVertex(PackedVertex &packedVertex,map<PackedVertex,unsigned short> &vertexToOutIndex, 
