@@ -26,7 +26,6 @@ namespace base
 			auto basicVs = ASSETS::SHADER("flat_shader.vp");
 			auto basicFs = ASSETS::SHADER("flat_shader.fp");
 			shader =  new base::objects::Shader(basicVs.c_str(),basicFs.c_str());
-			shader->enableLocations();
 			
 			//bind indices to shader inputs
 			shader->bindLocations();
@@ -45,8 +44,8 @@ namespace base
 			
 			glm::mat4 view = sceneManager->getViewMatrix().top();
 			glm::mat4 mv = view * model;
+			
 			auto MVP =  sceneManager->getProjectionMatrix() * mv;
-
 			auto  locMVP  = glGetUniformLocation(shader->getProgram(),"locMVP");
 			glUniformMatrix4fv(locMVP,1,GL_FALSE,glm::value_ptr(MVP));
 			

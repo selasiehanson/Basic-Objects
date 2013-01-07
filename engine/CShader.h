@@ -25,7 +25,7 @@ namespace base
 				void unloadShaderSrc(GLubyte * shaderSrc);
 				void link();
 				void bindLocations();
-				void enableLocations();
+				//void enableLocations();
 				void reflectLocations();
 				
 				GLuint getProgram();

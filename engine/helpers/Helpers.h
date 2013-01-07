@@ -8,12 +8,12 @@ using std::string;
 class HELPERS 
 {
 	public:
-		static void setTexture(base::io::CImage* image, GLuint textureId[])
+		static void setTexture(base::io::CImage* image, GLuint &textureId)
 		{
 			glEnable(GL_TEXTURE_2D);
 			//glActiveTexture(GL_TEXTURE0);
-			glGenTextures(1, &textureId[0]);
-			glBindTexture(GL_TEXTURE_2D, textureId[0]);
+			glGenTextures(1, &textureId);
+			glBindTexture(GL_TEXTURE_2D, textureId);
 			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 			//glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 			//gluBuild2DMipmaps(GL_TEXTURE_2D, 3,image->width, image->height, GL_RGB, GL_UNSIGNED_BYTE, image->data);

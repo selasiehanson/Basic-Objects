@@ -26,9 +26,9 @@ namespace base
 					}
 
 					
-					mesh->textureCoordinates.push_back(glm::vec2(0.5f, 0.0f));
+					//mesh->textureCoordinates.push_back(glm::vec2(0.5f, 0.0f));
 					
-					mesh->colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
+					//mesh->colors.push_back(glm::vec3(1.0f, 0.0f, 0.0f));
 					
 				}
 			

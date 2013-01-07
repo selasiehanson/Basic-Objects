@@ -2,6 +2,8 @@
 #include "CMeshLoader.h"
 #include "CSceneManager.h"
 #include "CJPEGHandler.h"
+#include "helpers\Helpers.h"
+
 namespace base
 {
 	namespace objects
@@ -71,7 +73,8 @@ namespace base
 			tgaHandler = new base::io::JPEGHandler ();
 			auto path  = ASSETS::IMAGE(texture);
 			base::io::Image *image = tgaHandler->readFile(path.c_str(),textureId);
-			setUpTexturing(image);
+			//setUpTexturing(image);
+			HELPERS::setTexture(image,textureId[0]);
 			delete image->data;
 			 
 			shader->link();
@@ -81,19 +84,11 @@ namespace base
 			locMVP = glGetUniformLocation(shader->getProgram(),"locMVP");
 			textureUnit = glGetUniformLocation(shader->getProgram(), "textureUnit0");
 		}
-
-		void CComplexModelSceneNode::setUpTexturing(base::io::CImage* image)
-		{
-			glEnable(GL_TEXTURE_2D);
-			glGenTextures(1, &textureId[0]);
-			glBindTexture(GL_TEXTURE_2D, textureId[0]);
-			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-			glTexImage2D(GL_TEXTURE_2D,0,GL_COMPRESSED_RGB,image->width,image->height,0,GL_RGB,GL_UNSIGNED_BYTE,image->data);
-		}
+		
 		
 		void CComplexModelSceneNode::render()
 		{
-			glEnable(GL_CULL_FACE);
+			//glEnable(GL_CULL_FACE);
 						
 			auto pos = this->getPosition();
 			mat4 model = translate(mat4 (1.0f),vec3(pos.x,pos.y,pos.z));
@@ -129,7 +124,7 @@ namespace base
 			glDisableVertexAttribArray(vTexCoords);
 			glUseProgram(0);
 			
-			glDisable(GL_CULL_FACE);
+			//glDisable(GL_CULL_FACE);
 		}
 		
 		void CComplexModelSceneNode::exit()

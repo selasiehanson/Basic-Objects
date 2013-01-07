@@ -21,7 +21,6 @@ namespace base
 			auto basicVs = ASSETS::SHADER("basic.vp");
 			auto basicFs = ASSETS::SHADER("basic.fp");
 			shader =  new base::objects::Shader(basicVs.c_str(),basicFs.c_str());
-			shader->enableLocations();
 			
 			//bind indices to shader inputs
 			shader->bindLocations();

@@ -4,7 +4,7 @@
 //#define GLEW_STATIC
 #include <GL/glew.h>
 #define FREEGLUT_STATIC
-#include<GL/glut.h>
+#include <GL/glut.h>
 #include"CBase.h"
 #include "CSceneNode.h"
 #include "CShader.h"

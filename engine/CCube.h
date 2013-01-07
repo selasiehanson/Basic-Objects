@@ -9,6 +9,7 @@
 #include "CImage.h"
 #include "CSceneNode.h"
 #include <vector>
+#include "CMesh.h"
 
 namespace base
 {
@@ -32,7 +33,7 @@ namespace base
 			CCube();
 			CCube(CSceneManager *sceneManager);
 			//CCube(GLfloat length);
-			CCube(CSceneManager *sceneManager,GLfloat length,string texture,bool useTexCoords = true);
+			CCube(CSceneManager *sceneManager, CMesh *mesh, GLfloat length,string texture,bool useTexCoords = true, GLenum drawTYpe = NULL);
 			~CCube();
 			
 			void setLength( GLfloat length);
@@ -45,6 +46,8 @@ namespace base
 			void exit();
 
 		private:
+			CMesh *mesh;
+
 			GLfloat length; //the length of each side
 			bool useTexCoords;
 			GLuint textureId[1];
@@ -52,9 +55,9 @@ namespace base
 			void setUpTexturing(base::io::CImage* image);
 			void  tetxuring(base::io::CImage * image );
 			base::objects::Shader *shader;
-			GLuint vertexId;
-			GLuint texCoordId;
-			GLuint indexBufferId;
+			//GLuint vertexId;
+			//GLuint texCoordId;
+			//GLuint indexBufferId;
 
 			GLint textureUnit;
 			GLint vVertex;

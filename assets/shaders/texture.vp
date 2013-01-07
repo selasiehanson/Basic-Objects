@@ -13,3 +13,21 @@ void main(void)
 } 
 
 
+
+//#version 300
+//uniform mat4 locMVP;
+
+//in vec3 vVertex;
+
+//in vec2 vTexCoords;
+
+//out vec2 vTex;
+
+//void main(void) 
+//{ 
+//	vTex = vTexCoords;
+//	gl_Position = locMVP * vec4(vVertex,1.0); 
+	
+//} 
+
+

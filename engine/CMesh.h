@@ -20,7 +20,7 @@ namespace base
 		class CMesh
 		{
 			public:
-				CMesh(EMESH_TYPE type);
+				CMesh(EMESH_TYPE type, GLfloat length = 1.0f);
 				std::vector<glm::vec3> vertices;
 				std::vector<glm::vec2> textureCoordinates;
 				std::vector<glm::vec3>normals;
@@ -29,18 +29,15 @@ namespace base
 				std::vector<GLushort>indices;
 
 				//not really necessarry
-				int getVertexCount();
-				int getNormalCount();
-				int getTexCoordCount();
-				int getColorCount();
-
+				GLuint getTextureId();
+				void setTextureId(GLuint textureId);
 				void bufferData();
 				void draw(GLenum type = NULL);
 			private:
 				GLuint vao;
 				GLuint buffers[EMESH_BUFFER::EMESH_BUFFER_COUNT];
 				base::objects::Shader *shader ;
-				GLuint texture;
+				GLuint textureId;
 
 		};
 	}

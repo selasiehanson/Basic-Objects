@@ -161,10 +161,10 @@ void initOGL()
 
 void renderScene()
 {	
-	glClearColor(0, 0, 0, 1);
+	glClearColor(0, 0, 0.2f, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	sceneManager->setViewMatrix(camera->getMatrix());
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 
 	//do light stuff here
 	//glEnable(GL_BLEND);
@@ -172,7 +172,7 @@ void renderScene()
 
 	sceneManager->render();	
 	
-	glDisable(GL_CULL_FACE);
+	//glDisable(GL_CULL_FACE);
 	
 	
 	camera->view();
@@ -222,10 +222,10 @@ void beforeInit(){
 	//sceneManager->addNode(light);
 
 	//draw a colletion of cubes
-	const auto size = 10;
+	const auto size = 1;
 	Cube *cubes[size];
 	const char * texture  = "3_store.jpg";
-
+	auto cubeMesh = new base::objects::CMesh(EMESH_TYPE::CUBE,0.7f);
 	
 
 	for(int i=0; i < size; i++)
@@ -233,15 +233,16 @@ void beforeInit(){
 		auto z = rand() % 40;
 		auto x = rand() % 40;
 		//std::cout<<"adding cube " << i +1<<endl;
-		cubes[i] = new Cube(sceneManager,0.7f,texture);
+		//cubes[i] = new Cube(sceneManager,0.7f,texture);
+		cubes[i] = new Cube(sceneManager,cubeMesh,0.7f,texture,true, GL_POLYGON);
 		cubes[i]->setPosition(x , 0, z);
 		sceneManager->addNode(cubes[i]);
 	}
 
-	//fighter1 = new ModelSceneNode(sceneManager,"Hover01_Body.obj","FB_hover01_uv01.jpg");
+	fighter1 = new ModelSceneNode(sceneManager,"Hover01_Body.obj","FB_hover01_uv01.jpg");
 	if(fighter1)
 	{
-		fighter1->setPosition(0,1.5f,0);
+		fighter1->setPosition(20,0,10);
 		fighter1->setScale(0.1f);
 		sceneManager->addNode(fighter1);
 	}
@@ -262,8 +263,8 @@ void beforeInit(){
 		sceneManager->addNode(fighter3);
 	}
 
-	Vertexf position(20.0f, 1.0f, 60.0f);
-	Vertexf target( 0.0f, 0.0f,-200.0f);
+	Vertexf position(20.0f, 1.0f, 20.0f);
+	Vertexf target( 0.0f, 0.0f,-50.0f);
 	//Vertexf position(75,75,75);
 	//Vertexf target( 0,1.5f,0);
 	camera = new Camera(position , target);
@@ -297,9 +298,9 @@ void main(int argc, char **argv)
 {	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(0,0);
+	glutInitWindowPosition(550,0);
 	glutInitWindowSize(windowWidth,windowHeight);
-	glutCreateWindow("Testing Engine");
+	glutCreateWindow("IN-gine");
 	
 	glutIdleFunc(renderScene);
 	glutDisplayFunc(renderScene);
@@ -314,7 +315,7 @@ void main(int argc, char **argv)
 	{
 		std::cout<<glewGetErrorString(err);
 	}
-	std::cout<<glewGetString(GLEW_VERSION)<<std::endl;
+	std::cout<<"Running on GLEW Version : "<<glewGetString(GLEW_VERSION)<<std::endl;
 
 	init(); ///a lot of things should move to this function
 	glutMainLoop();

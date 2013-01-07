@@ -186,16 +186,11 @@ namespace base
 		void CShader::bindLocations()
 		{
 			glBindAttribLocation(getProgram(),VERTEX_BUFFER,"vVertex");
+			glBindAttribLocation(getProgram(),TEXTURE_BUFFER,"vTexCoords");
 			glBindAttribLocation(getProgram(),COLOUR_BUFFER,"vColor");
-			glBindAttribLocation(getProgram(),TEXTURE_BUFFER,"texCoord");
 		}
 
-		void CShader::enableLocations()
-		{
-			glEnableVertexAttribArray(VERTEX_BUFFER); //vertex position
-			glEnableVertexAttribArray(COLOUR_BUFFER); //color position
-			glEnableVertexAttribArray(TEXTURE_BUFFER);
-		}
+		
 
 		void CShader::reflectLocations()
 		{

@@ -26,5 +26,6 @@
 #include "EMeshBuffer.h"
 #include "EMeshType.h"
 #include "EModelType.h"
+#include "CCubeMeshData.h"
 
 
